@@ -15,4 +15,15 @@ public class Croupier extends Personne {
             return "DRAW";
         else return "LOSE";
     }
+
+    public void jouer()
+    {
+        String result = verif();
+
+        while(result.equals("PAS ASSEZ DE CARTE")) {
+            demandeCarte();
+            result = verif();
+        }
+
+    }
 }

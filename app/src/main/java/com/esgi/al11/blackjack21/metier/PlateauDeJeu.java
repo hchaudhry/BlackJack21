@@ -8,7 +8,7 @@ public class PlateauDeJeu {
 
     private List<Carte> cartesDuTas;
     private Personne joueur;
-    private Personne croupier;
+    private Croupier croupier;
     private static PlateauDeJeu instance;
 
     public PlateauDeJeu() {
@@ -78,7 +78,7 @@ public class PlateauDeJeu {
         return cartesDuTas;
     }
 
-    public Personne getCroupier() {
+    public Croupier getCroupier() {
         return croupier;
     }
 }

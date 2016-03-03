@@ -21,30 +21,68 @@
         android:text="Continuer"
         android:id="@+id/btnNext"
         android:layout_alignParentBottom="true"
+        android:onClick="continuer"
     />
-    <View
-        android:layout_width="100dp"
+
+    <HorizontalScrollView
+
+        android:scrollbars="none"
+        android:layout_margin="1dp"
+        android:fillViewport="false"
+        android:layout_width="270dp"
         android:layout_height="100dp"
-        android:background="@android:color/black"
         android:id="@+id/homeHand"
         android:layout_alignParentRight="true"
         android:layout_toLeftOf="@+id/tas"
-    />
-    <View
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:id="@+id/linearLayoutCardsHome"
+            android:layout_height="wrap_content"
+            >
+        </LinearLayout>
+    </HorizontalScrollView>
+   <!-- <ListView
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:background="@android:color/white"
         android:id="@+id/hand"
         android:layout_above="@+id/btnNext"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-    />
+        />-->
+
+    <HorizontalScrollView
+
+        android:scrollbars="none"
+        android:id="@+id/title_horizontalScrollView"
+        android:layout_margin="1dp"
+        android:fillViewport="false"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/btnNext"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:id="@+id/linearLayoutCards"
+            android:layout_height="wrap_content"
+            >
+        </LinearLayout>
+    </HorizontalScrollView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Arrêter"
         android:id="@+id/btnStop"
+        android:onClick="arreter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         />
+
+
 </RelativeLayout>
