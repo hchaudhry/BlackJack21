@@ -46,8 +46,6 @@ public class PlateauDeJeu {
         joueur = new Joueur();
         croupier = new Croupier();
 
-        distribution();
-
         instance = this;
     }
 
@@ -66,6 +64,10 @@ public class PlateauDeJeu {
             instance = new PlateauDeJeu();
         }
         return instance;
+    }
+
+    public static void initInstance() {
+        instance = null;
     }
 
     public Personne getJoueur() {

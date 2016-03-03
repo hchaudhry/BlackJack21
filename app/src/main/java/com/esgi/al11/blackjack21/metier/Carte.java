@@ -33,4 +33,9 @@ public class Carte {
     public String getNom() {
         return nom;
     }
+
+    @Override
+    public String toString() {
+        return nom + " " + couleur;
+    }
 }

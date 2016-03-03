@@ -38,11 +38,10 @@ public abstract class Personne {
         return valeur;
     }
 
-    public boolean demandeCarte() {
+    public void demandeCarte() {
         ajouteCarte(PlateauDeJeu.getInstance().getCartesDuTas().get(0));
         PlateauDeJeu.getInstance().getCartesDuTas().remove(0);
-        return verif();
     }
 
-    public abstract boolean verif();
+    public abstract String verif();
 }

@@ -7,10 +7,10 @@ public class Joueur extends Personne {
 
 
     @Override
-    public boolean verif() {
+    public String verif() {
         if (getValeurCartes() > 21) {
-            return false;
+            return "BUSTED";
         }
-        return true;
+        return "OK";
     }
 }
