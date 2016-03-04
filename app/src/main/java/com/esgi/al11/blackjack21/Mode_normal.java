@@ -122,9 +122,6 @@ public class Mode_normal extends AppCompatActivity implements IEndWorker{
         pointsCroupier.setText((plateauDeJeu.getCroupier().getValeurCartes()).toString());
 
     }
-    public void reveleCarte(){
-
-    }
     public void reinit() {
 
         this.runOnUiThread(new Runnable() {
@@ -152,5 +149,8 @@ public class Mode_normal extends AppCompatActivity implements IEndWorker{
         plateauDeJeu.setMise(plateauDeJeu.getMise()+10, plateauDeJeu.getJoueur().getSolde(), this);
         plateauDeJeu.getJoueur().setSolde(plateauDeJeu.getJoueur().getSolde()- plateauDeJeu.getMise());
         valeurMise.setText("Mise :"+plateauDeJeu.getMise());
+    }
+    public void Start (View v){
+
     }
 }

@@ -107,7 +107,15 @@
         android:layout_alignParentRight="true"
 
         />
-    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Commencer"
+        android:id="@+id/btnStart"
+        android:onClick="Start"
+        android:layout_toRightOf="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        />
 
 
 </RelativeLayout>

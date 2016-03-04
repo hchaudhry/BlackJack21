@@ -182,19 +182,5 @@ public class MainActivity extends AppCompatActivity implements IEndWorker {
             }
         });
 
-        plateauDeJeu.initInstance();
-        plateauDeJeu = plateauDeJeu.getInstance();
-        arrayAdapterListCroupier = new CardsAdapter(
-                this,
-                plateauDeJeu.getCroupier().getCartes());
-        arrayAdapterListMain =  new CardsAdapter(
-                this,
-                plateauDeJeu.getJoueur().getCartes());
-        plateauDeJeu.distribution();
-        drawList(linearLayout,arrayAdapterListMain);
-        drawList(linearLayoutHome,arrayAdapterListCroupier, true);
-        pointsJouer.setText((plateauDeJeu.getJoueur().getValeurCartes()).toString());
-        pointsCroupier.setText("");
-
     }
 }
