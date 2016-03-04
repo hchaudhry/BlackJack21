@@ -1,5 +1,8 @@
 package com.esgi.al11.blackjack21.metier;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,8 +10,8 @@ import java.util.List;
 public class PlateauDeJeu {
 
     private List<Carte> cartesDuTas;
-    private Personne joueur = new Joueur();
-    private Personne croupier = new Croupier();
+    private Joueur joueur = new Joueur();
+    private Croupier croupier = new Croupier();
     private static PlateauDeJeu instance;
     private int mise;
 
@@ -69,7 +72,7 @@ public class PlateauDeJeu {
         instance = null;
     }
 
-    public Personne getJoueur() {
+    public Joueur getJoueur() {
         return joueur;
     }
 
@@ -77,7 +80,7 @@ public class PlateauDeJeu {
         return cartesDuTas;
     }
 
-    public Personne getCroupier() {
+    public Croupier getCroupier() {
         return croupier;
     }
 
@@ -89,20 +92,20 @@ public class PlateauDeJeu {
         this.mise = mise;
     }
 
-    public void calculSolde() {
+    public void calculSolde(Context context) {
         if(croupier.getValeurCartes() < 22 && croupier.getValeurCartes() > joueur.getValeurCartes()) {
-            System.out.print("Croupier gagne et joueur perd sa mise");
+            Toast.makeText(context, "Croupier gagne et joueur perd sa mise", Toast.LENGTH_LONG).show();
         }
         if(joueur.getValeurCartes() == 21 && joueur.getCartes().size() == 2) {
-            System.out.print("Joueur a blackjack et gagne 1.5 fois sa mise");
-            ((Joueur) joueur).setSolde(((Joueur) joueur).getSolde() + mise + (1.5 * mise));
+            Toast.makeText(context, "Joueur a blackjack et gagne 1.5 fois sa mise", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + mise + (1.5 * mise));
         } else if (joueur.getValeurCartes() > croupier.getValeurCartes()) {
-            System.out.print("Joueur a gagné contre le croupier et double sa mise");
-            ((Joueur) joueur).setSolde(((Joueur) joueur).getSolde() + (2 * mise));
+            Toast.makeText(context, "Joueur a gagné contre le croupier et double sa mise", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + (2 * mise));
         }
         if(croupier.getValeurCartes() == joueur.getValeurCartes()) {
-            System.out.print("Match nul, le joueur récupère sa mise");
-            ((Joueur) joueur).setSolde(((Joueur) joueur).getSolde() + mise);
+            Toast.makeText(context, "Match nul, le joueur récupère sa mise", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + mise);
         }
     }
 }

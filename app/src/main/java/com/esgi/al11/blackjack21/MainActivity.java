@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -30,73 +31,74 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        plateauDeJeu.initInstance();
         plateauDeJeu.distribution();
         linearLayout =(LinearLayout) findViewById(R.id.linearLayoutCards);
         linearLayoutHome =(LinearLayout) findViewById(R.id.linearLayoutCardsHome);
-        //listMains = (GridView) findViewById(R.id.hand);
-
-        //listMainsCroupier =(ListView) findViewById(R.id.homeHand);
-
         arrayAdapterListCroupier = new CardsAdapter(
                 this,
                 plateauDeJeu.getCroupier().getCartes());
-        //listMainsCroupier.setAdapter(arrayAdapterListCroupier);
 
         arrayAdapterListMain =  new CardsAdapter(
                 this,
                plateauDeJeu.getJoueur().getCartes());
-        //listMains.setAdapter(arrayAdapterListMain);
         drawList(linearLayout,arrayAdapterListMain);
-        drawList(linearLayoutHome,arrayAdapterListCroupier);
+        drawList(linearLayoutHome, arrayAdapterListCroupier);
 
     }
     private void drawList(LinearLayout v , ArrayAdapter<Carte> listCart){
         v.removeAllViews();
         LayoutInflater inflater = ((Activity)this).getLayoutInflater();
         for(int i=0 ; i<listCart.getCount() ; i++){
+
             Carte carte = listCart.getItem(i);
-            View row = inflater.inflate(R.layout.cartes_row, v, false);
-            CardHolder holder = new CardHolder();
+            LinearLayout row = (LinearLayout) inflater.inflate(R.layout.cartes_row, v, false);
+            if(v.getChildCount()==0){
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) row.getLayoutParams();
+                layoutParams.setMargins(0,0,0,0);
+            }
+                CardHolder holder = new CardHolder();
             holder.img = (ImageView) row.findViewById(R.id.img_card);
             String imgName = carte.getNom().toLowerCase() + "_" + carte.getCouleur().toString().toLowerCase();
             holder.img.setImageResource(this.getResources().getIdentifier(imgName,"drawable",this.getPackageName()));
             v.addView(row);
         }
-
-
     }
-
 
 
     public void continuer(View v) {
         plateauDeJeu.getJoueur().demandeCarte();
-        String isNotLost = plateauDeJeu.getJoueur().verif();
+        boolean isNotLost = plateauDeJeu.getJoueur().verif();
 
-        if(isNotLost.equals("BUSTED"))
+        if(!isNotLost)
         {
             Toast.makeText(this, "Perdu !!!",
                     Toast.LENGTH_LONG).show();
             Log.d("MBJ", "perdu");
         }
+        drawList(linearLayout, arrayAdapterListMain);
+    }
+
+    public void arreter(View v) throws InterruptedException {
+        plateauDeJeu.getCroupier().jouer();
+        arrayAdapterListCroupier.notifyDataSetChanged();
+        plateauDeJeu.calculSolde(this);
+       drawList(linearLayout,arrayAdapterListMain);
+       drawList(linearLayoutHome, arrayAdapterListCroupier);
+       new EndWorker(plateauDeJeu,this).execute();
+    }
+
+    public void reinit() {
+        plateauDeJeu.initInstance();
+        plateauDeJeu = plateauDeJeu.getInstance();
+        arrayAdapterListCroupier = new CardsAdapter(
+                this,
+                plateauDeJeu.getCroupier().getCartes());
+        arrayAdapterListMain =  new CardsAdapter(
+                this,
+                plateauDeJeu.getJoueur().getCartes());
+        plateauDeJeu.distribution();
         drawList(linearLayout,arrayAdapterListMain);
-    }
-
-    public void arreter(View v) {
-    plateauDeJeu.getCroupier().jouer();
-    arrayAdapterListCroupier.notifyDataSetChanged();
-    String isWinner = plateauDeJeu.getCroupier().verif();
-    if(isWinner.equals("WON")){
-        Toast.makeText(this, "Le croupier a gagnié",
-                Toast.LENGTH_LONG).show();
-    }
-    else if(isWinner.equals("LOSE") || isWinner.equals("BUSTED") ){
-        Toast.makeText(this, "Vous avez a gagnié",
-                Toast.LENGTH_LONG).show();
-    }
-    else if(isWinner.equals("DRAW")){
-        Toast.makeText(this, "Vous égaux",
-                Toast.LENGTH_LONG).show();
-
-    }
+        drawList(linearLayoutHome,arrayAdapterListCroupier);
     }
 }
