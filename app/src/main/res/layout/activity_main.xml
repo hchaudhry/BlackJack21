@@ -23,7 +23,15 @@
         android:layout_alignParentBottom="true"
         android:onClick="continuer"
     />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pointsCroupier"
+        android:layout_below="@+id/homeHand"
+        android:layout_margin="-50dp"
+        android:textStyle="bold"
 
+        />
     <HorizontalScrollView
 
         android:scrollbars="none"
@@ -52,15 +60,22 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />-->
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/points"
+       android:layout_above="@+id/title_horizontalScrollView"
+       android:layout_margin="-50dp"
+       android:textStyle="bold"
 
+       />
     <HorizontalScrollView
-
         android:scrollbars="none"
         android:id="@+id/title_horizontalScrollView"
         android:layout_margin="1dp"
         android:fillViewport="false"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/btnNext"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
