@@ -43,7 +43,6 @@
         android:layout_alignParentRight="true"
         android:layout_toLeftOf="@+id/tas"
         >
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"

@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
             else {
-
                 String imgName = carte.getNom().toLowerCase() + "_" + carte.getCouleur().toString().toLowerCase();
                 holder.img.setImageResource(this.getResources().getIdentifier(imgName, "drawable", this.getPackageName()));
             }
@@ -96,7 +95,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Perdu !!!",
                     Toast.LENGTH_LONG).show();
             Log.d("MBJ", "perdu");
+            new EndWorker(plateauDeJeu,this).execute();
+            drawList(linearLayoutHome,arrayAdapterListCroupier);
+
+
         }
+
         drawList(linearLayout, arrayAdapterListMain);
         pointsJouer.setText((plateauDeJeu.getJoueur().getValeurCartes()).toString());
 
@@ -113,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
        pointsCroupier.setText((plateauDeJeu.getCroupier().getValeurCartes()).toString());
 
     }
+    public void reveleCarte(){
 
+    }
     public void reinit() {
 
         plateauDeJeu.initInstance();
