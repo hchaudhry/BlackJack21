@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +39,6 @@ public class Mode_normal extends AppCompatActivity implements IEndWorker{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_normal);
-        plateauDeJeu.distribution();
         linearLayout =(LinearLayout) findViewById(R.id.linearLayoutCards);
         linearLayoutHome =(LinearLayout) findViewById(R.id.linearLayoutCardsHome);
         pointsJouer =(TextView) findViewById(R.id.points);
@@ -135,12 +135,14 @@ public class Mode_normal extends AppCompatActivity implements IEndWorker{
                 arrayAdapterListMain =  new CardsAdapter(
                         Mode_normal.this,
                         plateauDeJeu.getJoueur().getCartes());
-                plateauDeJeu.distribution();
                 drawList(linearLayout,arrayAdapterListMain);
                 drawList(linearLayoutHome,arrayAdapterListCroupier, true);
                 pointsJouer.setText((plateauDeJeu.getJoueur().getValeurCartes()).toString());
                 pointsCroupier.setText("");
                 valeurMise.setText("");
+                Button button = (Button)findViewById(R.id.btnStart);
+                button.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -151,6 +153,13 @@ public class Mode_normal extends AppCompatActivity implements IEndWorker{
         valeurMise.setText("Mise :"+plateauDeJeu.getMise());
     }
     public void Start (View v){
+        plateauDeJeu.distribution();
+        drawList(linearLayout,arrayAdapterListMain);
+        drawList(linearLayoutHome,arrayAdapterListCroupier, true);
+        pointsJouer.setText((plateauDeJeu.getJoueur().getValeurCartes()).toString());
+        Button button = (Button)findViewById(R.id.btnStart);
+        button.setVisibility(View.INVISIBLE);
+
 
     }
 }
