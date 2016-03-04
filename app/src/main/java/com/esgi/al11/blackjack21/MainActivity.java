@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements IEndWorker {
     }
 
     private void drawList(LinearLayout linearLayout, ArrayAdapter<Carte> arrayAdapterListMain) {
-        drawList(linearLayout,arrayAdapterListMain, false);
+        drawList(linearLayout, arrayAdapterListMain, false);
     }
 
     private void drawList(LinearLayout v , ArrayAdapter<Carte> listCart, boolean isReturned){
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements IEndWorker {
         isFinish = true;
         preference.removeValue("cartesCroupier");
         preference.removeValue("cartesJoueur");
-       drawList(linearLayout,arrayAdapterListMain);
+       drawList(linearLayout, arrayAdapterListMain);
        drawList(linearLayoutHome, arrayAdapterListCroupier);
 
        new EndWorker(plateauDeJeu,this).execute();
@@ -168,19 +168,34 @@ public class MainActivity extends AppCompatActivity implements IEndWorker {
             public void run() {
                 plateauDeJeu.initInstance();
                 plateauDeJeu = plateauDeJeu.getInstance();
-                arrayAdapterListCroupier = new CardsAdapter(
-                        MainActivity.this,
-                        plateauDeJeu.getCroupier().getCartes());
-                arrayAdapterListMain =  new CardsAdapter(
-                        MainActivity.this,
-                        plateauDeJeu.getJoueur().getCartes());
+
+                cartesCroupier = plateauDeJeu.getCroupier().getCartes();
+                arrayAdapterListCroupier = new CardsAdapter(MainActivity.this, cartesCroupier);
+
+                cartesJoueur = plateauDeJeu.getJoueur().getCartes();
+                arrayAdapterListMain = new CardsAdapter(MainActivity.this, cartesJoueur);
+
                 plateauDeJeu.distribution();
-                drawList(linearLayout,arrayAdapterListMain);
-                drawList(linearLayoutHome,arrayAdapterListCroupier, true);
-                pointsJouer.setText((plateauDeJeu.getJoueur().getValeurCartes()).toString());
+                drawList(linearLayout, arrayAdapterListMain);
+                drawList(linearLayoutHome, arrayAdapterListCroupier, true);
+
+                pJoueurs = (plateauDeJeu.getJoueur().getValeurCartes()).toString();
+                pointsJouer.setText(pJoueurs);
                 pointsCroupier.setText("");
+
+                isFinish = false;
             }
         });
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (!isFinish) {
+            Log.i(MainActivity.class.getName(), "SAVING ON STOP");
+            preference.saveCards("cartesCroupier", cartesCroupier);
+            preference.saveCards("cartesJoueur", cartesJoueur);
+            preference.saveString("pointsJoueur", pJoueurs);
+        }
     }
 }
