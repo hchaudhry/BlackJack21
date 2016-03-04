@@ -13,7 +13,7 @@ public class PlateauDeJeu {
     private Joueur joueur = new Joueur();
     private Croupier croupier = new Croupier();
     private static PlateauDeJeu instance;
-    private int mise;
+    private int mise = 0;
 
     public PlateauDeJeu() {
         cartesDuTas = new ArrayList<Carte>();
