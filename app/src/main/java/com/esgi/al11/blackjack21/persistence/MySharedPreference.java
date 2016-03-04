@@ -52,6 +52,7 @@ public class MySharedPreference  {
         String json = gson.toJson(list);
 
         editor.putString(key, json);
+        editor.apply();
     }
 
     public List<Carte> getCards(String key) {
