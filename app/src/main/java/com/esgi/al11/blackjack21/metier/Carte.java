@@ -36,6 +36,10 @@ public class Carte {
 
     @Override
     public String toString() {
-        return nom + " " + couleur;
+        return nom + " " + getCouleur();
+    }
+
+    public Couleur getCouleur() {
+        return couleur;
     }
 }

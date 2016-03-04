@@ -13,14 +13,14 @@ public class PlateauDeJeu {
     private int mise;
 
     public PlateauDeJeu() {
-        cartesDuTas = new ArrayList<>();
+        cartesDuTas = new ArrayList<Carte>();
 
         for (Couleur couleur : Couleur.values()) {
             for (Valeur valeur : Valeur.values()) {
                 Carte carte;
                 switch (valeur) {
                     case AS:{
-                        List<Integer> valeurs = new ArrayList<>();
+                        List<Integer> valeurs = new ArrayList<Integer>();
                         valeurs.add(1);
                         valeurs.add(11);
                         carte = new Carte(couleur, valeurs, valeur.toString());
@@ -29,13 +29,13 @@ public class PlateauDeJeu {
                     case VALET :
                     case DAME :
                     case ROI : {
-                        List<Integer> valeurs = new ArrayList<>();
+                        List<Integer> valeurs = new ArrayList<Integer>();
                         valeurs.add(10);
                         carte = new Carte(couleur, valeurs, valeur.toString());
                         break;
                     }
                     default:
-                        List<Integer> valeurs = new ArrayList<>();
+                        List<Integer> valeurs = new ArrayList<Integer>();
                         valeurs.add(valeur.getValeur());
                         carte = new Carte(couleur, valeurs, valeur.toString());
                         break;
