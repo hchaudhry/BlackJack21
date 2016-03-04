@@ -43,5 +43,5 @@ public abstract class Personne {
         PlateauDeJeu.getInstance().getCartesDuTas().remove(0);
     }
 
-    public abstract String verif();
+    public abstract boolean verif();
 }

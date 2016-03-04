@@ -5,12 +5,25 @@ package com.esgi.al11.blackjack21.metier;
  */
 public class Joueur extends Personne {
 
+    private double solde;
+
+    public Joueur() {
+        solde = 500;
+    }
 
     @Override
-    public String verif() {
+    public boolean verif() {
         if (getValeurCartes() > 21) {
-            return "BUSTED";
+            return false;
         }
-        return "OK";
+        return true;
+    }
+
+    public double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
     }
 }
