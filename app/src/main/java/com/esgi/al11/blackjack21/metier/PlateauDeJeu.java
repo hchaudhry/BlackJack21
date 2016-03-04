@@ -88,8 +88,14 @@ public class PlateauDeJeu {
         return mise;
     }
 
-    public void setMise(int mise) {
-        this.mise = mise;
+    public void setMise(int mise, double sold, Context context) {
+        if(getMise()+mise<sold){
+            this.mise = mise;
+        }
+        else {
+            Toast.makeText(context, "Vous avez plus de solde",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void calculSolde(Context context) {
@@ -105,6 +111,22 @@ public class PlateauDeJeu {
         }
         if(croupier.getValeurCartes() == joueur.getValeurCartes()) {
             Toast.makeText(context, "Match nul, le joueur récupère sa mise", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + mise);
+        }
+    }
+    public void calculSoldeModeSimple(Context context) {
+        if(croupier.getValeurCartes() < 22 && croupier.getValeurCartes() > joueur.getValeurCartes()) {
+            Toast.makeText(context, "Croupier gagne", Toast.LENGTH_LONG).show();
+        }
+        if(joueur.getValeurCartes() == 21 && joueur.getCartes().size() == 2) {
+            Toast.makeText(context, "Joueur a blackjack", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + mise + (1.5 * mise));
+        } else if (joueur.getValeurCartes() > croupier.getValeurCartes()) {
+            Toast.makeText(context, "Joueur a gagné contre le croupier", Toast.LENGTH_LONG).show();
+            joueur.setSolde(joueur.getSolde() + (2 * mise));
+        }
+        if(croupier.getValeurCartes() == joueur.getValeurCartes()) {
+            Toast.makeText(context, "Match nul", Toast.LENGTH_LONG).show();
             joueur.setSolde(joueur.getSolde() + mise);
         }
     }

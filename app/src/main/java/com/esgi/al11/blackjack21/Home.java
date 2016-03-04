@@ -43,4 +43,8 @@ public class Home extends ActionBarActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void modeJetons(View v){
+        Intent intent = new Intent(this,Mode_normal.class);
+        startActivity(intent);
+    }
 }

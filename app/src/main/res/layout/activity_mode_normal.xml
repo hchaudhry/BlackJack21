@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-    />
+        />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:id="@+id/btnNext"
         android:layout_alignParentBottom="true"
         android:onClick="continuer"
-    />
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,21 +50,21 @@
             >
         </LinearLayout>
     </HorizontalScrollView>
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/points"
-       android:layout_above="@+id/title_horizontalScrollView"
-       android:layout_margin="-50dp"
-       android:textStyle="bold"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/points"
+        android:layout_above="@+id/title_horizontalScrollView"
+        android:layout_margin="-50dp"
+        android:textStyle="bold"
 
-       />
+        />
     <HorizontalScrollView
         android:scrollbars="none"
         android:id="@+id/title_horizontalScrollView"
         android:layout_margin="1dp"
         android:fillViewport="false"
-        android:layout_width="fill_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnNext"
         android:layout_centerHorizontal="true"
@@ -79,6 +79,24 @@
             >
         </LinearLayout>
     </HorizontalScrollView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mise"
+        android:layout_above="@+id/jeton"
+        android:layout_toRightOf="@+id/title_horizontalScrollView"
+        android:layout_margin="-50dp"
+        android:textStyle="bold"
+        />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/jeton"
+        android:layout_toRightOf="@+id/title_horizontalScrollView"
+        android:src="@drawable/jeton"
+        android:layout_above="@+id/btnStop"
+        android:onClick="miser"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,7 +105,9 @@
         android:onClick="arreter"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+
         />
+    
 
 
 </RelativeLayout>

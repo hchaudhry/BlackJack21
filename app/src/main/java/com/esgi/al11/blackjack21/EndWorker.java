@@ -9,12 +9,11 @@ import com.esgi.al11.blackjack21.metier.PlateauDeJeu;
  */
 public class EndWorker extends AsyncTask {
     private final PlateauDeJeu plateauDeJeu ;
-    private final MainActivity mainActivity;
+    private final IEndWorker activity;
 
-
-    public EndWorker(PlateauDeJeu plateauDeJeu, MainActivity mainActivity) {
+    public EndWorker(PlateauDeJeu plateauDeJeu, IEndWorker activity) {
         this.plateauDeJeu = plateauDeJeu;
-        this.mainActivity = mainActivity;
+        this.activity = activity;
     }
 
     @Override
@@ -24,12 +23,7 @@ public class EndWorker extends AsyncTask {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        mainActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mainActivity.reinit();
-            }
-        });
+        activity.reinit();
         return null;
     }
 }
